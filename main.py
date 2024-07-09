@@ -13,7 +13,6 @@ def HandleRequest(request):
    if(request == "good morning"):
       return "good morning sir, all services are ready"
    if "time" in request:
-      print("ok") 
       return "you should go to speed sir"
    else:
       return "sorry sir i can't recognize your request"
