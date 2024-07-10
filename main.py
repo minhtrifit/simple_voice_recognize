@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import pyttsx3
+import subprocess
 
 MIC_INDEX = 1
 engine = pyttsx3.init()
@@ -14,6 +15,16 @@ def HandleRequest(request):
       return "good morning sir, all services are ready"
    if "time" in request:
       return "you should go to speed sir"
+   if "terminal" in request:
+       subprocess.Popen(['wt'])
+       return "of course sir, terminal is opened"
+   if "google chrome" in request:
+       # Replace with the path to your Chrome executable
+       chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+
+       # This will open Google Chrome
+       subprocess.Popen([chrome_path])
+       return "of course sir, google chrome is opened"
    else:
       return "sorry sir i can't recognize your request"
 
@@ -27,7 +38,7 @@ while True:
             robot_ear.adjust_for_ambient_noise(mic)
             audio = robot_ear.listen(mic)
 
-        request = robot_ear.recognize_google(audio)
+        request = robot_ear.recognize_google(audio).lower()
         print("Your request: " + request)
 
         robot_brain = HandleRequest(request)
